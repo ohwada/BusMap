@@ -10,6 +10,7 @@
 class BusDb {
 
     var $cachedPref = array();
+    var $cachedCom = array();
 
     /**
      * constractor
@@ -45,13 +46,15 @@ class BusDb {
      */
     function getCompaniesByPrefId( $pref_id ) {
         $id_arr = $this->selectComIdsByPrefId( $pref_id );
-        return $this->selectComsByIds( $id_arr );
+        return $this->getCompaniesByIds( $id_arr );
     }
 
     /**
-     * selectComsByIds
+     * getCompaniesByIds
+     * @param arary of int $id_arr
+     * @return arary of row
      */
-    function selectComsByIds( $id_arr ) {
+    function getCompaniesByIds( $id_arr ) {
         if ( count($id_arr) == 0 ) return array();
         $ids = implode( ",", $id_arr );
         $sql = "SELECT * FROM bus_company WHERE id IN (". $ids .") ORDER BY name,id";
@@ -73,6 +76,20 @@ class BusDb {
     }
 
     /**
+     * getCachedPrefById
+     * @param int $pref_id
+     * @return array of row
+     */
+    function getCachedCompanyById( $com_id ) {
+        if ( isset( $this->cachedCom[ $com_id ] )) {
+            return $this->cachedCom[ $com_id ];
+        }
+        $com = $this->getCompanyById( $com_id );
+        $this->cachedCom[ $com_id ] = $com;
+        return $com;
+    }
+
+    /**
      * getCompany
      * @param int $id
      * @return row
@@ -91,11 +108,25 @@ class BusDb {
         $sql = "SELECT * FROM bus_company WHERE ";
         if ( $pref_id > 0 ) {
             $id_arr = $this->selectComIdsByPrefId( $pref_id );
-            $ids = implode( ",", $id_arr );
-            $sql .= " id IN (". $ids .") AND ";
+            if ( count($id_arr) > 0 ) {
+                $ids = implode( ",", $id_arr );
+                $sql .= " id IN (". $ids .") AND ";
+            }
         }
         $sql .= " name LIKE '%" . $name. "%' ORDER BY name, id";
         return $this->excuteRowsSql( $sql );
+    }
+
+    /**
+     * updateCompany
+     * @param int $id 
+     * @param string $url_home
+     * @param string $url_search
+     * @return boolean
+     */
+    function updateCompany( $id, $url_home, $url_search ) {
+        $sql = "UPDATE bus_company SET url_home=\"". mysql_real_escape_string($url_home) ."\", url_search=\"". mysql_real_escape_string($url_search) ."\" WHERE id=". intval($id);
+        return $this->excuteSql( $sql );
     }
 
     /**
@@ -209,22 +240,36 @@ class BusDb {
     }
 
     /**
-     * getRoutesByCompany
+     * getRoutesByComId
      * @param int $com_id
      * @return arary of row
      */
-    function getRoutesByCompany( $com_id ) {
+    function getRoutesByComId( $com_id ) {
         $sql = "SELECT * FROM bus_route WHERE company_id=". $com_id ." ORDER BY bus_line";
         return $this->excuteRowsSql( $sql );
     }
 
     /**
-     * getRoutesByCompany
+     * getRoutesByComIds
+     * @param array of int $com_id_arr
+     * @return arary of row
+     */
+    function getRoutesByComIds( $com_id_arr ) {
+        if ( count($com_id_arr) == 0 ) return array();
+        $ids = implode( ",", $com_id_arr );
+        $sql = "SELECT * FROM bus_route WHERE company_id IN (". $ids .") ORDER BY bus_line";
+        return $this->excuteRowsSql( $sql );
+    }
+
+    /**
+     * getRoutesByIds
      * @param arary of int $id_arr
      * @return arary of row
      */
-    function selectRoutesByIds( $id_arr ) {
-        $ids = implode( ",", $id_arr );
+    function getRoutesByIds( $id_arr ) {
+        if ( count($id_arr) == 0 ) return array();
+        $unique_id_arr = array_unique( $id_arr, SORT_NUMERIC );
+        $ids = implode( ",", $unique_id_arr );
         $sql = "SELECT * FROM bus_route WHERE id IN (". $ids .") ORDER BY company_id, bus_line";
         return $this->excuteRowsSql( $sql );
     }
@@ -236,7 +281,7 @@ class BusDb {
      */
     function getRoutesByNodeId( $node_id ) {
         $id_arr = $this->selectRouteIdsByNodeId( $node_id );
-        return $this->selectRoutesByIds( $id_arr );
+        return $this->getRoutesByIds( $id_arr );
     }
 
     /**
@@ -266,12 +311,12 @@ class BusDb {
             $ids = implode( ",", $id_arr );
             $sql .= " id IN (". $ids .") AND ";
         }
-        $sql .= " bus_line LIKE '%" . $name. "%' ORDER BY bus_line, id";
+        $sql .= " bus_line LIKE '%" . $name. "%' ORDER BY company_id, bus_line, id";
         return $this->excuteRowsSql( $sql );
     }
 
     /**
-     * getRoutesByCompany
+     * getRoutesByComId
      * @param arary of row $routes 
      * @return arary of row
      */
@@ -279,7 +324,7 @@ class BusDb {
         $ret_arr = array();
         foreach ( $routes as $route ) { 
             $curve_arr = array();
-            $curves = $this->getCurvesByRoute( $route["id"] );
+            $curves = $this->getCurvesByRouteId( $route["id"] );
             foreach ( $curves as $curve ) {
                 $curve_arr[] = $curve["curve"];
             }
@@ -291,11 +336,11 @@ class BusDb {
     }
 
     /**
-     * getCurvesByRoute
+     * getCurvesByRouteId
      * @param int $route_id
      * @return arary of row
      */
-    function getCurvesByRoute( $route_id ) {
+    function getCurvesByRouteId( $route_id ) {
         return $this->selectRows( "bus_curve", "route_id", $route_id );
     }
 
@@ -322,6 +367,7 @@ class BusDb {
      * @return arary of row
      */
     function getNodesByIds( $id_arr ) {
+        if ( count($id_arr) == 0 ) return array();
         $unique_id_arr = array_unique( $id_arr, SORT_NUMERIC );
         $ids = implode( ",", $unique_id_arr );
         $sql = "SELECT * FROM bus_stop WHERE id IN (". $ids .") ORDER BY name,id";
@@ -347,15 +393,18 @@ class BusDb {
      * searchNodesPoint
      * @param float $lat
      * @param float $lon
+     * @param int $distance ( 100m unit )
      * @return arary of row
      */
-    function searchNodesPoint( $lat, $lon ) {
-        $lat_e6 = intval( $lat * 1e6 );
-        $lon_e6 = intval( $lon * 1e6 );
-        $max_lat = $lat_e6 + 11000;
-        $min_lat = $lat_e6 - 11000;
-        $max_lon = $lon_e6 + 9000;
-        $min_lon = $lon_e6 - 9000;
+    function searchNodesPoint( $lat, $lon, $distance ) {
+        $distance_lat = 1100 * intval($distance);
+        $distance_lon = 900 * intval($distance);
+        $lat_e6 = intval( floatval($lat) * 1e6 );
+        $lon_e6 = intval( floatval($lon) * 1e6 );
+        $max_lat = $lat_e6 + $distance_lat;
+        $min_lat = $lat_e6 - $distance_lat;
+        $max_lon = $lon_e6 + $distance_lon;
+        $min_lon = $lon_e6 - $distance_lon;
         $sql = "SELECT * FROM bus_stop WHERE lat_e6 < ". $max_lat. " AND lat_e6 > ". $min_lat ." AND lon_e6 < ". $max_lon ." AND lon_e6 > ". $min_lon ." ORDER BY pref_id, name, id";
         return $this->excuteRowsSql( $sql );
     }
@@ -451,6 +500,7 @@ class BusDb {
      * selectLinkRouteNodeByRouteIdIds
      */
     function selectLinkRouteNodeByRouteIdIds( $id_arr ) {
+        if ( count($id_arr) == 0 ) return array();
         $unique_id_arr = array_unique( $id_arr, SORT_NUMERIC );
         $ids = implode( ",", $unique_id_arr );
         $sql = "SELECT * FROM bus_link_route_node WHERE route_id IN (". $ids .") ORDER BY id";
@@ -530,6 +580,19 @@ class BusDb {
             $arr[] = $row;
         }
         return $arr;
+    }
+
+    /**
+     * excuteSql
+     */
+    function excuteSql( $sql ) {
+        $result = mysql_query($sql);
+        if (!$result) {
+            echo $sql;
+            echo mysql_error();
+            return false;
+        }
+        return true;
     }
 
 }  	

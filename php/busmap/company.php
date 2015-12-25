@@ -22,18 +22,27 @@
     $com_name = $com["name"];
     list( $map_lat, $map_lon, $map_zoom ) = 
         $util->calcMapCenter( $com["max_lat"], $com["min_lat"], $com["max_lon"], $com["min_lon"] );
+    $url_home = "";
+    if ( $com["url_home"] ) {
+        $url_home = "<a href=\"". $com["url_home"] ."\" target=\"_blank\">[ホームページ]</a>";
+    }
+    $url_search = "";
+    if ( $com["url_search"] ) {
+        $url_search = "<a href=\"". $com["url_search"] ."\" target=\"_blank\">[時刻表]</a>";
+    }
 
     // routes
-    $routes = $db->getRoutesByCompany( $id );
-    list($list, $list_navi, $list_height, $route_id_arr) = 
+    $routes = $db->getRoutesByComId( $id );
+    list($list, $list_navi, $list_height) = 
         $util->makeRouteList( $routes, false );
     $map_corves = $db->getMapCorvesByRoutes( $routes );
     $map_lines = $util->makeLines( $map_corves );
     $route_num = count($routes);
 
     // nodes
+    $route_id_arr = $util->makeRouteIds( $routes );
     $nodes = $db->getNodesByRouteIds( $route_id_arr );
-    $map_markers = $util->makeMarkers( $nodes );
+    $map_markers = $util->makeNodeMarkers( $nodes );
     $node_num = count($nodes);
 
     // prefs
@@ -67,8 +76,8 @@
     <script src="js/markerclusterer_compiled.js"></script>
 <script type="text/javascript">
 var map;
-var polylines = [];
 var prevId = 0;
+var polylines = [];
 var markerList = <?php echo $map_markers; ?>;
 var lineList = <?php echo $map_lines; ?>;
 /**
@@ -125,13 +134,13 @@ function showMakers() {
  */
 function showRoutes() {
     for (var i = 0; i < lineList.length; i++) {
-        drowPolyline( i, lineList[i][1], lineList[i][2], "#0000FF", 3 );
+        drowPolyline( i, lineList[i][1], lineList[i][2], "#0000FF", 3, false );
     }
 }
 /**
  * drowPolyline
  */
-function drowPolyline( n, name, corves, color, weight ) {
+function drowPolyline( n, name, corves, color, weight, is_push ) {
     var polylineWindow = new google.maps.InfoWindow();
     for (var i = 0; i < corves.length; i++) {
         var lines = corves[i];
@@ -164,7 +173,9 @@ function drowPolyline( n, name, corves, color, weight ) {
                 highligthLine( lineList[n][0] );
             }
         }) ( polyline, n ));
-        polylines.push( polyline );
+        if ( is_push ) {
+            polylines.push( polyline );
+        }
     }
 }
 /**
@@ -176,17 +187,11 @@ function highligthLine( id ) {
     for (var i = 0; i < polylines.length; i++) {
         polylines[i].setMap(null);
     }
-    // draw new lines
+    // draw new highligth lines
     polylines = [];
     for (var i = 0; i < lineList.length; i++) {
-        if ( id != lineList[i][0] ) {
-            drowPolyline( i, lineList[i][1], lineList[i][2], "#0000FF", 3 );
-        }
-    }
-    // draw highligt lines
-    for (var i = 0; i < lineList.length; i++) {
         if ( id == lineList[i][0] ) {
-            drowPolyline( i, lineList[i][1], lineList[i][2], "#FF0000", 5 );
+            drowPolyline( i, lineList[i][1], lineList[i][2], "#FF0000", 5, true );
         }
     }
     highligthList( id );
@@ -222,7 +227,9 @@ function highligthList( id ) {
 <?php echo $SEARCH_FORM; ?>
 </td></tr></table>
 <h3>バス停の地図</h3>
-バス会社 <b><?php echo $com_name; ?></b><br/> 
+バス会社 <b><?php echo $com_name; ?></b>
+ <?php echo $url_home; ?>
+ <?php echo $url_search; ?><br/> 
 バス路線 (<?php echo $route_num; ?>)
  : バス停 (<?php echo $node_num; ?>)
 <?php echo $pref_delmita; ?>
@@ -255,7 +262,8 @@ function highligthList( id ) {
 　<?php echo $list_navi; ?>
 </td></tr></table>
 <div id="copyright">
-Copyright (c) 2015 Kenichi Ohwada All Rights Reserved
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+    Author: Kenichi Ohwada<br/>
 </div>
 </body>
 </html>

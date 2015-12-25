@@ -18,7 +18,8 @@
     // route
     $id = isset($_GET["id"]) ? intval($_GET["id"]): 1;
     $route = $db->getRouteById( $id );
-    $url_corp = "<a href=\"company.php?id=". $route["company_id"]. "\">". $route["company"] ."</a>";
+    $com_id = $route["company_id"];
+
     $route_name = $route["bus_line"];
     $route_day  = $route["day"];
     $route_saturday = $route["saturday"];
@@ -29,9 +30,22 @@
     $map_corves = $db->getMapCorvesByRoutes( array($route) );
     $map_lines = $util->makeLines( $map_corves );
 
+    // company
+    $com_id = $route["company_id"];
+    $com = $db->getCompanyById( $route["company_id"] );
+    $url_corp = "<a href=\"company.php?id=". $com_id. "\">". $com["name"] ."</a>";
+    $url_home = "";
+    if ( $com["url_home"] ) {
+        $url_home = "<a href=\"". $com["url_home"] ."\" target=\"_blank\">[ホームページ]</a>";
+    }
+    $url_search = "";
+    if ( $com["url_search"] ) {
+        $url_search = "<a href=\"". $com["url_search"] ."\" target=\"_blank\">[時刻表]</a>";
+    }
+
     // nodes
     $nodes = $db->getNodesByRouteId( $id );
-    $map_markers = $util->makeMarkers( $nodes );
+    $map_markers = $util->makeNodeMarkers( $nodes );
     $list = $util->makeNodeList( $nodes );
     $node_num = count( $nodes );
 
@@ -157,7 +171,9 @@ function drowPolyline( n, name, corves, color ) {
 <h3>バス停の地図</h3>
 バス路線 <b><?php echo $route_name; ?></b><br/>
 バス会社 <?php echo $url_corp; ?>
- : バス区分 <?php echo $route_type; ?>
+ <?php echo $url_home; ?>
+ <?php echo $url_search; ?><br/> 
+バス区分 <?php echo $route_type; ?>
 <?php echo $pref_delmita; ?>
 範囲 <?php echo $pref_renge; ?><br/>
 一日当たりの運行本数
@@ -189,7 +205,8 @@ function drowPolyline( n, name, corves, color ) {
 <ul><?php echo $list; ?></ul>
 </td></tr></table>
 <div id="copyright">
-Copyright (c) 2015 Kenichi Ohwada All Rights Reserved
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+    Author: Kenichi Ohwada<br/>
 </div>
 </body>
 </html>

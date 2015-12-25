@@ -1,0 +1,168 @@
+<!doctype html>
+<!--
+ * Bus map
+ * 2015-12-01 K.OHWADA
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>バス停 地図</title>
+    <style >
+      #copyright {
+        font-size: 70%;
+      }
+    </style>
+  </head>
+  <body>
+　<a href="index.php">[TOP]</a>
+　<a href="about.html">[このサイトについて]</a>
+<h3>バス停の地図</h3>
+<h1>APIの使い方</h1>
+問合せと応答
+<ul>
+<li><a href="#location">緯度・経度</a></li>
+<li><a href="#nodes">バス停のID</a></li>
+<li><a href="#companies">バス会社のID</a></li>
+<li><a href="#routes">バス路線のID</a></li>
+</ul>
+
+<a name="location"/>
+<h3>緯度・経度</h3>
+<div>
+<a href="http://busmap.ohwada.jp/api.php?mode=location&lat=35.231182&lon=139.703109&distance=5" target="_blank">
+api.php?mode=location&lat=35.231182&lon=139.703109&distance=5</a>
+</div>
+
+<b>問合せ</b><br/>
+<table border="1" width="800px">
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>mode</td><td>location</td></tr>
+<tr><td>lat</td><td>緯度</td></tr>
+<tr><td>lon</td><td>経度</td></tr>
+<tr><td>distance</td><td>距離<br/>100mから10Kmまで (100m単位) <br/>省略可 (500m)</td></tr>
+</table><br/>
+
+<b>応答</b><br/>
+<table border="1" width="800px">
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>code</td><td>コード<br/>1:成功 0:失敗</td></tr>
+<tr><td>message</td><td>失敗した理由</td></tr>
+<tr><td>nodes</td><td>バス停の情報の配列</td></tr>
+</table><br/>
+
+<table border="1" width="800px">
+<tr><th colspan="2">nodes</th></tr>
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>id</td><td>バス停のID</td></tr>
+<tr><td>name</td><td>バス停の名称</td></tr>
+<tr><td>pref</td><td>都道府県名</td></tr>
+<tr><td>lat</td><td>緯度</td></tr>
+<tr><td>lon</td><td>経度</td></tr>
+<tr><td>route_ids</td><td>バス路線のIDの配列</td></tr>
+</table>
+
+<a name="nodes"/>
+<h3>バス停のID</h3>
+<div>
+<a href="http://busmap.ohwada.jp/api.php?mode=nodes&ids=1,2,3" target="_blank">api.php?mode=nodes&ids=1,2,3</a>
+</div>
+
+<b>問合せ</b><br/>
+<table border="1" width="800px">
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>mode</td><td>nodes</td></tr>
+<tr><td>ids</td><td>バス停のID<br/>カンマ区切りで100個まで</td></tr>
+</table><br/>
+<b>応答</b><br/>
+緯度・経度と同じです。<br/>
+
+<a name="companies"/>
+<h3>バス会社のID</h3>
+<div>
+<a href="http://busmap.ohwada.jp/api.php?mode=companies&ids=1,2,3" target="_blank">api.php?mode=companies&ids=1,2,3</a>
+</div>
+
+<b>問合せ</b><br/>
+<table border="1" width="800px">
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>mode</td><td>companies</td></tr>
+<tr><td>ids</td><td>バス会社のID<br/>カンマ区切りで100個まで</td></tr>
+</table><br/>
+
+<b>応答</b><br/>
+<table border="1" width="800px">
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>code</td><td>コード<br/>1:成功 0:失敗</td></tr>
+<tr><td>message</td><td>失敗した理由</td></tr>
+<tr><td>companies</td><td>バス会社の情報の配列</td></tr>
+</table><br/>
+
+<table border="1" width="800px">
+<tr><th colspan="2">companies</th></tr>
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>id</td><td>会社のID</td></tr>
+<tr><td>name</td><td>会社の名称</td></tr>
+<tr><td>url_home</td><td>ホームページのURL<br/>存在しないこともある</td></tr>
+<tr><td>url_search</td><td>時刻表検索のURL<br/>存在しないこともある</td></tr>
+</table><br/>
+
+<a name="routes"/>
+<h3>バス路線のID</h3>
+<div>
+<a href="http://busmap.ohwada.jp/api.php?mode=routes&ids=1,2,3" target="_blank">api.php?mode=routes&ids=1,2,3</a>
+</div>
+
+<b>問合せ</b><br/>
+<table border="1" width="800px">
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>mode</td><td>routes</td></tr>
+<tr><td>ids</td><td>バス路線のID<br/>カンマ区切りで100個まで</td></tr>
+</table><br/>
+
+<b>応答</b><br/>
+<table border="1" width="800px">
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>code</td><td>コード<br/>1:成功 0:失敗</td></tr>
+<tr><td>message</td><td>失敗した理由</td></tr>
+<tr><td>routes</td><td>バス路線の情報の配列</td></tr>
+<tr><td>companies</td><td>バス会社の情報の配列<br/>バス会社のIDと同じです</td></tr>
+<tr><td>curves</td><td>バス路線の緯度経度の配列</td></tr>
+</table><br/>
+
+<table border="1" width="800px">
+<tr><th colspan="2">routes</th></tr>
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>id</td><td>バス路線のID</td></tr>
+<tr><td>bus_line</td><td>バス路線の名称</td></tr>
+<tr><td>company_id</td><td>会社のID</td></tr>
+<tr><td>company</td><td>会社の名称</td></tr>
+<tr><td>type</td><td>バス区分コード <a href="#type">詳細</a> </td></tr>
+<tr><td>day</td><td>平日の運行頻度<br/>不明の場合は 999.9</td></tr>
+<tr><td>saturday</td><td>土曜日の運行頻度<br/>不明の場合は 999.9</td></tr>
+<tr><td>holiday</td><td>日曜・祝日の運行頻度<br/>不明の場合は 999.9</td></tr>
+<tr><td>remarks</td><td>備考</td></tr>
+<tr><td>node_ids</td><td>バス停のIDの配列</td></tr>
+</table><br/>
+
+<table border="1" width="800px">
+<tr><th colspan="2">curves</th></tr>
+<tr><th>キー</th><th>内容</th></tr>
+<tr><td>id</td><td>バス路線のID</td></tr>
+<tr><td>curves</td><td>バス路線の緯度経度の配列<br/>１つのバス路線は複数の経路データを持っています<br/>１つの経路データは [緯度,経度,緯度,経度] と緯度・経度の順にカンマで区切られています</td></tr>
+</table><br/>
+
+<table border="1" width="800px">
+<tr><th colspan="3">バス区分コード type</th></tr>
+<tr><td>1</td><td>路線バス（民間）</td><td>バス事業者が運行しているもの</td></tr>
+<tr><td>2</td><td>路線バス（公営）</td><td>市営バス等自治体の交通部局が運行しているもの</td></tr>
+<tr><td>3</td><td>コミュニティバス</td><td>自治体が運営しているもの</td></tr>
+<tr><td>4</td><td>デマンドバス</td><td>予約がなければ運行しないもの</td></tr>
+<tr><td>5</td><td>その他</td><td>以上に含まれないもの</td></tr>
+</table><br/>
+
+<div id="copyright">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+    Author: Kenichi Ohwada<br/>
+</div>
+</body>
+</html>

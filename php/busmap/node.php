@@ -30,15 +30,15 @@
 
     // routes
     $routes = $db->getRoutesByNodeId( $id );
-    list($list_route, $list_route_navi, $list_height, $route_id_arr) = 
+    list($list_route, $list_route_navi, $list_height) = 
         $util->makeRouteList( $routes, true );
     $map_corves = $db->getMapCorvesByRoutes( $routes );
     $map_lines = $util->makeLines( $map_corves );
     $route_num = count($routes);
 
     // nodes
-    $nodes = $db->searchNodesPoint( $map_lat, $map_lon );
-    $map_markers = $util->makeMarkers( $nodes );
+    $nodes = $db->searchNodesPoint( $map_lat, $map_lon, 5 );
+    $map_markers = $util->makeNodeMarkers( $nodes );
     $list_node = $util->makeNodeListExcept( $nodes, $id );
     $node_count = count( $nodes );
     $node_num = ( $node_count > 0 ) ? $node_count - 1: 0;
@@ -260,7 +260,8 @@ function highligthList( id ) {
 </div>
 </td></tr></table>
 <div id="copyright">
-Copyright (c) 2015 Kenichi Ohwada All Rights Reserved
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+    Author: Kenichi Ohwada<br/>
 </div>
 </body>
 </html>

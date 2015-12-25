@@ -9,6 +9,11 @@
  */
 class BusUtil {
 
+    // 長野
+    var $DEFAULT_LAT = 36.110446929932;
+    var $DEFAULT_LON = 138.08520507812;
+    var $DEFAULT_ZOOM = 8;  
+
     /**
      * constractor
      */ 
@@ -46,12 +51,38 @@ class BusUtil {
         return $text;
     }
 
+    function calcMapCenterByComs( $coms ) {
+        list( $max_lat, $min_lat, $max_lon, $min_lon ) = 
+            $this->calcAreaByComs( $coms );
+        return $this->calcMapCenter( $max_lat, $min_lat, $max_lon, $min_lon );
+    }
+
     /**
-     * calcArea
-     * @param array of row $nodes
-     * @return array of float
+     * calcMapCenterByRoutes
+     * @param array of row $routes
+     * @return array
      */
-    function calcArea( $nodes ) {
+    function calcMapCenterByRoutes( $routes ) {
+        list( $max_lat, $min_lat, $max_lon, $min_lon ) = 
+            $this->calcAreaByRoutes( $routes );
+        return $this->calcMapCenter( $max_lat, $min_lat, $max_lon, $min_lon );
+    }
+
+    /**
+     * calcMapCenterByNodes
+     * @param array of row $nodes
+     * @return array
+     */
+    function calcMapCenterByNodes( $nodes ) {
+        list( $max_lat, $min_lat, $max_lon, $min_lon ) = 
+            $this->calcAreaByNodes( $nodes );
+        return $this->calcMapCenter( $max_lat, $min_lat, $max_lon, $min_lon );
+    }
+
+    /**
+     * calcAreaByNodes
+     */
+    function calcAreaByNodes( $nodes ) {
         $max_lat = -180.0;
         $min_lat =180.0;
         $max_lon = -180.0;
@@ -76,6 +107,49 @@ class BusUtil {
     }
 
     /**
+     * calcAreaByComs
+     */
+    function calcAreaByComs( $coms ) {
+        return $this->calcAreaByMaxMin( $coms );
+    }
+
+    /**
+     * calcAreaByRoutes
+     */
+    function calcAreaByRoutes( $routes ) {
+        return $this->calcAreaByMaxMin( $routes );
+    }
+
+    /**
+     * calcAreaByMaxMin
+     */
+    function calcAreaByMaxMin( $arr ) {
+        $max_lat = -180.0;
+        $min_lat =180.0;
+        $max_lon = -180.0;
+        $min_lon =180.0;
+        foreach ( $arr as $a ) { 
+            $a_max_lat = $a["max_lat"];
+            $a_min_lat = $a["min_lat"];
+            $a_max_lon = $a["max_lon"];
+            $a_min_lon = $a["min_lon"];
+            if ($a_max_lat > $max_lat) {
+                $max_lat = $a_max_lat;
+            }
+            if ($a_max_lon > $max_lon) {
+                $max_lon = $a_max_lon;
+            }
+            if ($a_min_lat < $min_lat) {
+                $min_lat = $a_min_lat;
+            }
+            if ($a_min_lon < $min_lon) {
+                $min_lon = $a_min_lon;
+            }
+        }
+        return array($max_lat, $min_lat, $max_lon, $min_lon);
+    }
+
+    /**
      * calcMapCenter
      * @param float $max_lat
      * @param float $min_lat
@@ -86,12 +160,12 @@ class BusUtil {
     function calcMapCenter( $max_lat, $min_lat, $max_lon, $min_lon ) {
         $lat = ( $max_lat + $min_lat )/2;
         $lon = ( $max_lon + $min_lon )/2;
-        if (( $lat > 20 )&&( $lon > 110 )) {
+        if (( $lat > 10 )&&( $lon > 10 )) {
             $zoom = $this->calcZoom( $max_lat, $min_lat, $max_lon, $min_lon );
         } else {
-            $lat = 35.393505005;
-            $lon = 139.388713305;
-            $zoom = 8;            
+            $lat = $this->DEFAULT_LAT;
+            $lon = $this->DEFAULT_LON;
+            $zoom = $this->DEFAULT_ZOOM;            
         }
         return array($lat, $lon, $zoom);
     }
@@ -152,23 +226,50 @@ class BusUtil {
     }
 
     /**
-     * makeMarkers
+     * makeComMarkers
+     * @param array of row $coms
+     * @return string
+     */
+    function makeComMarkers( $coms ) {
+        if ( !is_array($coms) ) {
+            $markers = "[]";
+            return $markers;
+        }
+        $arr = array();
+        foreach ( $coms as $com ) {
+            $tmp = $com;
+            $tmp["lat"] = ($com["max_lat"] + $com["min_lat"] )/2;
+            $tmp["lon"] = ($com["max_lon"] + $com["min_lon"] )/2;
+            $arr[] = $tmp;
+        }
+        return $this->makeMarkersCommon( $arr );
+    }
+
+    /**
+     * makeNodeMarkers
      * @param array of row $nodes
      * @return string
      */
-    function makeMarkers( $nodes ) {
-        if ( !is_array($nodes) ) {
+    function makeNodeMarkers( $nodes ) {
+        return $this->makeMarkersCommon( $nodes );
+    }
+
+   /**
+     * makeMarkersCommon
+     */
+    function makeMarkersCommon( $arr ) {
+        if ( !is_array($arr) ) {
             $markers = "[]";
             return $markers;
         }
         $isFirst = true;
         $markers = "[";
-        foreach ( $nodes as $node ) {
+        foreach ( $arr as $a ) {
             if ( !$isFirst ) {
                 $markers .=  ",\n";
             }
             $isFirst = false;
-            $markers .= "[". $node["lat"] .",". $node["lon"]  .",". $node["id"] .",\"". $node["name"] ."\"]";
+            $markers .= "[". $a["lat"] .",". $a["lon"]  .",". $a["id"] .",\"". $a["name"] ."\"]";
         }
         $markers .= "]";
         return $markers;
@@ -217,9 +318,8 @@ class BusUtil {
     }
 
     /**
-     * makeNodeListExcept
+     * makeNodeList
      * @param array of row $nodes
-     * @param int $id
      * @return string
      */
     function makeNodeList( $nodes ) {
@@ -270,14 +370,12 @@ class BusUtil {
      * makeRouteList
      * @param array of row $routes
      * @param boolean $flag
-     * @return string
+     * @return array
      */
     function makeRouteList( $routes, $flag ) {
         $list = "";
-        $id_arr = array();
         foreach ( $routes as $route ) {
             $route_id = $route["id"];  
-            $id_arr[] = $route_id;
             $li = "<li id=\"route_". $route_id ."\">";
             $input = "<input type=\"radio\" name=\"highligth\" onclick=\"highligthLine(". $route_id .");\" /> ";
             $a_company = "<a href=\"company.php?id=". $route["company_id"]. "\">". $route["company"] ."</a>";
@@ -294,7 +392,45 @@ class BusUtil {
             $list_navi = "スクロールします<br/><br/>\n";
             $list_height = "480px";
         }
-        return array($list, $list_navi, $list_height, $id_arr);
+        return array($list, $list_navi, $list_height);
+    }
+
+    /**
+     * makeComIds
+     * @param array of row $coms
+     * @return array of int
+     */
+    function makeComIds($coms) {
+        return $this->makeIds($coms);
+    }
+
+    /**
+     * makeRouteIds
+     * @param array of row $routes
+     * @return array of int
+     */
+    function makeRouteIds($routes) {
+        return $this->makeIds($routes);
+    }
+
+    /**
+     * makeNodeIds
+     * @param array of row $nodes
+     * @return array of int
+     */
+    function makeNodeIds($nodes) {
+        return $this->makeIds($nodes);
+    }
+
+    /**
+     * makeIds
+     */
+    function makeIds($arr) {
+        $ret = array();
+        foreach( $arr as $a ) {
+            $ret[] = $a["id"];
+        }
+        return $ret;
     }
 
    /**

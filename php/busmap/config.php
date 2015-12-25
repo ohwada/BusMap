@@ -12,4 +12,5 @@
     define( "DB_PASS", "" );
     define( "DB_NAME", "" );
     define( "HOST", "" );
+    define( "MAIL", "" );
 ?>
