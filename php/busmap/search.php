@@ -276,7 +276,8 @@ class BusSearch {
 
     $distance_selected_5 = "";
     $distance_selected_10 = $SELECTED;
-    $distance_selected_50 = "";
+    $distance_selected_15 = "";
+    $distance_selected_30 = "";
 
     $mode = isset($_GET["mode"]) ? $_GET["mode"] : "node";
     $param_pref = isset($_GET["pref"]) ? intval($_GET["pref"]) : 0;
@@ -293,7 +294,8 @@ class BusSearch {
             $msg = $search->msg;
             $distance_selected_5 = $search->distance_selected_5;
             $distance_selected_10 = $search->distance_selected_10;
-            $distance_selected_50 = $search->distance_selected_50;
+            $distance_selected_15 = $search->distance_selected_15;
+            $distance_selected_30 = $search->distance_selected_30;
        }
 
     // route
