@@ -4,7 +4,7 @@ BusMap : Android
 The map of bus stops in Japan.<br/>
 Android: display bus stops in map.<br/>
 
-<img src="https://raw.githubusercontent.com/ohwada/BusMap/master/docs/android/google_play/screenshot/5_get.png" width="300" />
+<img src="https://raw.githubusercontent.com/ohwada/BusMap/master/docs/android/google_play/screenshot/5_get.png" width="150" />
 
 ## Setup
 - require Volley library. <br/>
