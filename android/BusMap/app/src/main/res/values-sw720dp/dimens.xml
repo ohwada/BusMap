@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2015-12-01 K.OHWADA -->
+<resources>
+<!-- dialog marker -->
+    <dimen name="dialog_marker_view_width">450dp</dimen>
+    <dimen name="dialog_marker_title_textsize">26sp</dimen>
+    <dimen name="item_row_1_textsize">20sp</dimen>
+
+<!-- dialog route -->
+    <dimen name="dialog_route_view_width">450dp</dimen>
+    <dimen name="dialog_route_title_textsize">26sp</dimen>
+    <dimen name="dialog_route_busstop_textsize">20sp</dimen>
+    <dimen name="route_label_width">140sp</dimen>
+    <dimen name="route_label_textsize">16sp</dimen>
+    <dimen name="route_text_textsize">20sp</dimen>
+
+<!-- dialog about -->
+    <dimen name="dialog_about_view_width">450dp</dimen>
+    <dimen name="dialog_about_main_textsize">20sp</dimen>
+    <dimen name="dialog_about_credit_textsize">18sp</dimen>
+</resources>

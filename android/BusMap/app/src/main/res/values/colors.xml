@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2015-12-01 K.OHWADA -->
+<resources>
+    <!-- white  -->    
+    <color name="dialog_text">#FFFFFF</color>
+    <!-- gray transparent -->    
+    <color name="dialog_background_transparent">#40808080</color>
+</resources>

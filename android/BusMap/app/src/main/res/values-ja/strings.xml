@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2015-12-01 K.OHWADA -->
+<resources>
+    <string name="app_name">バス停</string>
+    <string name="title_activity_main">バス停地図</string>
+
+<!-- Main Activity -->
+    <string name="toast_no_node">この付近にはバス停がありません</string>
+    <string name="toast_wait">しばらくお待ちください</string>
+    <string name="toast_volley_error">サーバーからデータが取得できません: \n %s</string>
+
+<!-- activity main -->
+    <string name="button_move">地図の移動</string>
+    <string name="button_get">バス停を取得する</string>
+
+<!-- MapSettingActivity -->
+    <string name="geo_name">関内</string>
+    <string name="edit_address">住所</string>
+    <string name="button_search">検索</string>
+    <string name="button_location_set">設定</string>
+    <string name="search_please_address">住所を入力してください</string>
+    <string name="search_please_name">名称を入力してください</string>
+    <string name="search_found">場所が見つかりました</string>
+    <string name="search_not_found">指定された住所が見つかりません</string>
+
+<!-- dialog option  -->
+    <string name="dialog_button_gps">GPS</string>
+    <string name="dialog_button_close">閉じる</string>
+
+<!-- dialog route -->
+    <string name="dialog_route_label_company">運営会社</string>
+    <string name="dialog_route_label_type">運用形態</string>
+    <string name="dialog_route_label_day">平日の運行頻度</string>
+    <string name="dialog_route_label_saturday">土曜の運行頻度</string>
+    <string name="dialog_route_label_holiday">日祝の運行頻度</string>
+    <string name="dialog_route_label_remarks">備考</string>
+    <string name="button_dialog_route_home">ホームページ</string>
+    <string name="button_dialog_route_search">時刻表</string>
+    <string name="button_dialog_route_info">バス停の情報</string>
+
+<!-- RouteDialog  -->
+    <string name="route_unknown">不明</string>
+
+<!-- dialog about -->
+    <string name="dialog_about_title">このアプリについて</string>   
+    <string name="dialog_about_main">このアプリは バス停の位置を地図 (Google Map) に表示します。\nバス停のデータとして 国土交通省の国土数値情報を使用しています。</string>
+    <string name="dialog_about_credit">制作者: 大和田健一</string>
+
+<!-- menu main -->
+    <string name="menu_about">このアプリについて</string>  
+    <string name="menu_usage">使い方</string>
+    <string name="menu_center">センタマーカーの表示</string>   
+    <string name="menu_map_setting">地図の中心の設定</string>   
+    <string name="menu_setting">設定</string>
+    <string name="menu_clear">キャッシュを削除する</string>
+
+<!-- preference -->
+    <string name="preference_title_main">一般設定</string>
+    <string name="checkbox_pref_display_route_title">路線を表示する</string>
+    <string name="checkbox_pref_display_route_summary">バス停を取得したときにバス路線も表示する。\n長距離の路線が多いとアプリが異常終了することがあります。その場合はチェックを外してください。</string>
+    <string name="list_pref_distance_title">取得する距離</string>
+    <string name="list_pref_distance_summary">バス停を取得するときの地図の中心からの距離</string>
+
+    <string name="preference_title_cache">キャッシュの設定</string>
+    <string name="edittext_pref_cache_dir_title">キャッシュのディレクトリ</string>
+    <string name="edittext_pref_cache_dir_summary">キャッシュするSDカードのディレクトリ名。\nアプリを再起動すると有効になります。変更しても元のディレクトリは削除されません。手動で削除してください。</string>
+    <string name="list_pref_cache_files_title">キャッシュのファイル数</string>
+    <string name="list_pref_cache_files_summary">キャッシュする上限のファイル。\nアプリを再起動すると有効になります。この上限を超えると、その分は削除されます。</string>
+    <string name="list_pref_cache_days_title">キャッシュの有効日数</string>
+    <string name="list_pref_cache_days_summary">キャッシュしたファイルの有効日数。\nアプリを再起動すると有効になります。この日数を超えると、キャッシュは無効になりサーバーから取得します。</string>
+
+</resources>

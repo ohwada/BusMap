@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2015-12-01 K.OHWADA -->
+<resources>
+<!-- dialog route -->
+    <string-array name="route_types">
+        <item>	Bus - Private Company</item>
+        <item>Bus - Public</item>
+        <item>Community Bus</item>
+        <item>Demand Bus</item>
+        <item>Other</item>
+    </string-array>
+
+<!-- preference -->
+    <string-array name="list_pref_distance_entries">
+        <item>500m</item>
+        <item>1Km</item>
+        <item>1.5Km</item>
+        <item>3Km</item>
+    </string-array>
+
+    <string-array name="list_pref_distance_entryvalues">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+    </string-array>
+
+    <string-array name="list_pref_cache_files_entries">
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>No limit</item>
+    </string-array>
+
+    <string-array name="list_pref_cache_files_entryvalues">
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="list_pref_cache_days_entries">
+        <item>One week</item>
+        <item>Two weeks</item>
+        <item>One month</item>
+        <item>Three months</item>
+        <item>No limit</item>
+    </string-array>
+
+    <string-array name="list_pref_cache_days_entryvalues">
+        <item>7</item>
+        <item>14</item>
+        <item>30</item>
+        <item>90</item>
+        <item>0</item>
+    </string-array>
+
+</resources>

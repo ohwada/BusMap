@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2015-12-01 K.OHWADA -->
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="4dp" >
+
+    <TextView 
+        android:id="@+id/TextView_dialog_route_busstop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/dialog_text"
+        android:textSize="@dimen/dialog_route_busstop_textsize" />
+
+    <TextView 
+        android:id="@+id/TextView_dialog_route_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/dialog_text"
+        android:textSize="@dimen/dialog_route_title_textsize" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/RouteLabel"  
+            android:text="@string/dialog_route_label_company" />
+
+        <TextView 
+            style="@style/RouteText" 
+            android:id="@+id/TextView_dialog_route_company"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView 
+            style="@style/RouteLabel"  
+            android:text="@string/dialog_route_label_type" />
+
+        <TextView 
+            style="@style/RouteText"  
+            android:id="@+id/TextView_dialog_route_type" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView 
+            style="@style/RouteLabel" 
+            android:text="@string/dialog_route_label_day" />
+
+        <TextView 
+            style="@style/RouteText"  
+            android:id="@+id/TextView_dialog_route_day" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView 
+            style="@style/RouteLabel" 
+            android:text="@string/dialog_route_label_saturday" />
+
+        <TextView 
+            style="@style/RouteText"  
+            android:id="@+id/TextView_dialog_route_saturday" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/RouteLabel"  
+            android:text="@string/dialog_route_label_holiday" />
+
+        <TextView
+            style="@style/RouteText"  
+            android:id="@+id/TextView_dialog_route_holiday" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/RouteLabel"  
+            android:text="@string/dialog_route_label_remarks" />
+
+        <TextView
+            style="@style/RouteText" 
+            android:id="@+id/TextView_dialog_route_remarks" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <Button 
+            android:id="@+id/Button_dialog_route_home" 
+            android:layout_width="0dp" 
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default_small"
+            android:text="@string/button_dialog_route_home" />
+
+        <Button android:id="@+id/Button_dialog_route_search" 
+            android:layout_width="0dp" 
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default_small"
+            android:text="@string/button_dialog_route_search" />
+ 				
+    </LinearLayout>
+		
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <Button 
+            android:id="@+id/Button_dialog_route_info" 
+            android:layout_width="0dp" 
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default_small"
+            android:text="@string/button_dialog_route_info" />
+
+        <Button android:id="@+id/Button_dialog_close" 
+            android:layout_width="0dp" 
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default_small"
+            android:text="@string/dialog_button_close" />
+ 				
+    </LinearLayout>
+	
+</LinearLayout>

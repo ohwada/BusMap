@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2015-12-01 K.OHWADA -->
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"  
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"     
+    tools:context=".MainActivity">
+
+    <fragment 
+        class="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/main_map"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Button_move"
+            android:text="@string/button_move"
+            android:layout_width="0dp" 
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <Button 
+            android:id="@+id/Button_get"
+            android:text="@string/button_get"
+            android:layout_width="0dp" 
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
+
+    </LinearLayout>
+
+</LinearLayout>

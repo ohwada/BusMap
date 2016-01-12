@@ -1,0 +1,159 @@
+<!-- wordpress format -->
+<a href="https://play.google.com/store/apps/details?id=jp.ohwada.android.busmap" target="_blank"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_icon.png" alt="busmap_icon" width="144" height="144" class="alignnone size-full wp-image-6158" /></a>
+
+<strong>概要</strong>
+バス停の位置を地図 (Google Map) に表示するアプリです。
+地図の中心から500m以内のバス停を表示します。
+
+このアプリはWEBサービス <a href="http://busmap.ohwada.jp/" target="_blank">バス停の地図</a> と連携しています。
+
+バス停のデータとして、国土交通省の国土数値情報を使用しています。
+国土数値情報に関しては、下記のサイトをご覧下さい。
+<a href="http://nlftp.mlit.go.jp/ksj/" target="_blank">国土数値情報ダウンロードサービス</a>
+
+<a href="https://play.google.com/store/apps/details?id=jp.ohwada.android.busmap" target="_blank">Google Play</a> よりダウンロードください。
+
+<strong>使い方</strong>
+(1) 起動すると、地図が表示されます。
+(2) 「バス停を取得する」ボタンを押すと、地図の中心から500m以内にあるバス停が、地図に表示されます。
+(3) バス停のマーカーにタッチすると、バス停の名称が表示されます。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker.png" rel="attachment wp-att-6136"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker-169x300.png" alt="busmap_marker" width="169" height="300" class="alignnone size-medium wp-image-6136" /></a>
+
+<strong>画面と操作の説明</strong>
+<strong>1. メイン画面</strong>
+起動すると、地図が表示されます。２つのボタンがあります。
+(1) バス停を取得する
+バス停の情報をサーバーからダウンロードします。
+(2) 地図の移動
+地図を移動するときに使います。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_first.png" rel="attachment wp-att-6134"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_first-169x300.png" alt="busmap_first" width="169" height="300" class="alignnone size-medium wp-image-6134" /></a>
+
+<strong>2. バス停を取得する</strong>
+(1) 「バス停を取得する」ボタンにタッチすると、地図の中心から500m以内にあるバス停の情報がダウンロードされて、地図に表示されます。
+同時に、バス停の路線の経路が青線で、地図に表示されます。
+(2) バス停のマーカーにタッチすると、バス停の名称が表示されます。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_get_pregress.png" rel="attachment wp-att-6198"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_get_pregress-169x300.png" alt="busmap_get_pregress" width="169" height="300" class="alignnone size-medium wp-image-6198" /></a><a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_get.png" rel="attachment wp-att-6135"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_get-169x300.png" alt="busmap_get" width="169" height="300" class="alignnone size-medium wp-image-6135" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker.png" rel="attachment wp-att-6136"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker-169x300.png" alt="busmap_marker" width="169" height="300" class="alignnone size-medium wp-image-6136" /></a>
+
+<strong>3. バス停のマーカー</strong>
+(1) 「バス停の名称」にタッチすると、バス停の路線の一覧が表示されます。
+(2) 路線の一覧にある「１つの項目」にタッチすると、路線の情報が表示されます。
+同時に、その路線の経路が赤線で、地図に表示されます。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker_node.png" rel="attachment wp-att-6137"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker_node-169x300.png" alt="busmap_marker_node" width="169" height="300" class="alignnone size-medium wp-image-6137" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker_route.png" rel="attachment wp-att-6138"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker_route-169x300.png" alt="busmap_marker_route" width="169" height="300" class="alignnone size-medium wp-image-6138" /></a>
+
+(2-1) ホームページ
+「ホームページ」ボタンにタッチすると、バス会社のホームページが表示されます。
+無い場合もあります。
+(2-2) バス停検索
+「バス停検索」ボタンにタッチすると、バス会社が提供するバス停検索のページが表示されます。
+無い場合もあります。
+(2-3) バス停の情報
+「バス停の情報」ボタンにタッチすると、(3) の画面に戻ります。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker_home.png" rel="attachment wp-att-6139"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker_home-169x300.png" alt="busmap_marker_home" width="169" height="300" class="alignnone size-medium wp-image-6139" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker_search.png" rel="attachment wp-att-6140"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_marker_search-169x300.png" alt="busmap_marker_search" width="169" height="300" class="alignnone size-medium wp-image-6140" /></a>
+画像は京浜急行バスの例です。
+
+<strong>4. 地図の移動</strong>
+地図を移動するときに使います。
+「地図の移動」ボタンを押すと、ポップアップ画面が表示されます。
+(1) 検索
+住所や地名を入力して、場所を検索します。
+(2) 関内へ
+関内駅に移動します。「設定画面」で変更できます。
+(3) GPSへ
+GPSの検知した場所に移動します。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_option.png" rel="attachment wp-att-6142"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_option-169x300.png" alt="busmap_option" width="169" height="300" class="alignnone size-medium wp-image-6142" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_option_search.png" rel="attachment wp-att-6143"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_option_search-169x300.png" alt="busmap_option_search" width="169" height="300" class="alignnone size-medium wp-image-6143" /></a>
+
+<strong>5. メニュー</strong>
+メイン画面ではメニューボタンが有効です。
+上段にある「メニュー(縦３点)」ボタンをタッチすると、メニューが表示されます。
+(1) このアプリについて
+このアプリの説明が表示されます。
+(2) 使い方
+使い方のWEBページが表示されます。
+(3) センターマーカーの表示/非表示
+センターマーカーを表示する/しないを設定します。
+(4) 地図の中心の設定
+地図の中心を設定します。詳しくは6へ。
+(5) 設定
+バス停を取得する範囲などを設定します。詳しくは7へ。
+(6) キャッシュを削除する
+全てのキャッシュを削除します。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_menu.png" rel="attachment wp-att-6145"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_menu-169x300.png" alt="busmap_menu" width="169" height="300" class="alignnone size-medium wp-image-6145" /></a> 
+
+(2) 使い方
+使い方のWEBページが表示されます。
+今、見ているページです。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_menu_usage.png" rel="attachment wp-att-6147"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_menu_usage-169x300.png" alt="busmap_menu_usage" width="169" height="300" class="alignnone size-medium wp-image-6147" /></a>
+
+(3) センターマーカーの表示/非表示
+センターマーカーを表示する/しないを設定します。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_menu_marker_on.png" rel="attachment wp-att-6148"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_menu_marker_on-169x300.png" alt="busmap_menu_marker_on" width="169" height="300" class="alignnone size-medium wp-image-6148" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_menu_marker_off.png" rel="attachment wp-att-6149"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_menu_marker_off-169x300.png" alt="busmap_menu_marker_off" width="169" height="300" class="alignnone size-medium wp-image-6149" /></a>
+
+<strong>6. 地図の中心の設定画面</strong>
+地図の中心を設定します。
+初期状態では、横浜の関内駅が設定されています。
+(1) 検索
+住所や地名を入力して、場所を検索します。
+(2) 設定
+名称を入力して、地図の中心位置を設定します。
+名称はオプション画面で表示されます。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_map_setting.png" rel="attachment wp-att-6150"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_map_setting-169x300.png" alt="busmap_map_setting" width="169" height="300" class="alignnone size-medium wp-image-6150" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_map_setting_search.png" rel="attachment wp-att-6151"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_map_setting_search-169x300.png" alt="busmap_map_setting_search" width="169" height="300" class="alignnone size-medium wp-image-6151" /></a>
+
+<strong>7. 設定画面</strong>
+バス停を取得する距離などを設定します。
+(1) 路線を表示する
+バス停を取得したときに路線も表示する/しないを設定します。
+(2) 取得する範囲
+バス停を取得するときの地図の中心からの距離を設定します。
+(3) キャッシュのディレクトリ
+キャッシュするSDカードのディレクトリ名です。
+変更しても元のディレクトリは削除されません。手動で削除してください。
+(4) キャッシュのファイル数
+キャッシュする上限のファイル数です。
+この上限を超えると、その分は削除されます。
+(5) キャッシュの有効日数
+キャッシュしたファイルの有効日数です。
+この日数を超えると、キャッシュは無効になりサーバーから取得します。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting.png" rel="attachment wp-att-6152"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting-169x300.png" alt="busmap_setting" width="169" height="300" class="alignnone size-medium wp-image-6152" /></a>
+
+<strong>7.1 一般設定</strong>
+次の処理から、有効になります。
+(1) 路線を表示する
+バス停を取得したときに路線も表示する/しないを設定します。
+長距離の路線が多いとアプリが異常終了することがあります。その場合は、このチェックを外してください。
+(2) 取得する範囲
+バス停を取得するときの地図の中心からの距離です。
+設定例：初期設定の状態と、路線を表示しない・距離1Km を設定したとき
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_distance.png" rel="attachment wp-att-6153"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_distance-169x300.png" alt="busmap_setting_distance" width="169" height="300" class="alignnone size-medium wp-image-6153" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_normal.png" rel="attachment wp-att-6154"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_normal-169x300.png" alt="busmap_setting_normal" width="169" height="300" class="alignnone size-medium wp-image-6154" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_1km.png" rel="attachment wp-att-6155"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_1km-169x300.png" alt="busmap_setting_1km" width="169" height="300" class="alignnone size-medium wp-image-6155" /></a>
+
+<strong>7.2 キャッシュの設定</strong>
+アプリを再起動すると、有効になります。
+(3) キャッシュのディレクトリ
+キャッシュするSDカードのディレクトリ名です。
+変更しても元のディレクトリは削除されません。手動で削除してください。
+(4) キャッシュのファイル数
+キャッシュする上限のファイル数です。
+この上限を超えると、その分は削除されます。
+(5) キャッシュの有効日数
+キャッシュしたファイルの有効日数です。
+この日数を超えると、キャッシュは無効になりサーバーから取得します。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_cache_dir.png" rel="attachment wp-att-6188"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_cache_dir-169x300.png" alt="busmap_setting_cache_dir" width="169" height="300" class="alignnone size-medium wp-image-6188" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_cache_files.png" rel="attachment wp-att-6189"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_cache_files-169x300.png" alt="busmap_setting_cache_files" width="169" height="300" class="alignnone size-medium wp-image-6189" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_cache_days.png" rel="attachment wp-att-6190"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_setting_cache_days-169x300.png" alt="busmap_setting_cache_days" width="169" height="300" class="alignnone size-medium wp-image-6190" /></a>
+
+<strong>使用上の注意</strong>
+長距離の路線が多いと、アプリが異常終了したり、路線の表示に時間がかかることがあります。
+例えば、Galaxy Nexus にて、東京駅のバス停を表示したときは、10分くらいかかります。
+プログレス・バーがなかなか進めないときは、止まってしまったときは、バック・キーで中断できます。
+または、設定画面の「路線を表示する」のチェックを外してください。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_tokyo_progress.png" rel="attachment wp-att-6200"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_tokyo_progress-169x300.png" alt="busmap_tokyo_progress" width="169" height="300" class="alignnone size-medium wp-image-6200" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_tokyo.png" rel="attachment wp-att-6203"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_tokyo-169x300.png" alt="busmap_tokyo" width="169" height="300" class="alignnone size-medium wp-image-6203" /></a>
+
+<strong>アクセス許可</strong>
+(1) 位置情報
+GPSやWifiから位置を取得します。
+(2) USBストレージへのアクセス
+SDカードにダウンロードした情報をキャッシュとして保存しています。
+(3) Googleサービス設定の読み取り
+Google Map を使用します
+(4) ネットワークへのアクセス
+WEBサービスからバス停の情報を取得します。
+
+<strong>ソースコード</strong>
+<a href="https://github.com/ohwada/BusMap" target="_blank">github</a> で公開しています。

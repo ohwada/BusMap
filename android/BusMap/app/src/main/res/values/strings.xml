@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2015-12-01 K.OHWADA -->
+<resources>
+    <string name="app_name">BusMap</string>
+    <string name="title_activity_main">BusMap</string>
+
+<!-- Main Activity -->
+    <string name="toast_no_node">There are no bus stop</string>
+    <string name="toast_wait">Please wait</string>
+    <string name="toast_volley_error">NOT get data from server: \n %s</string>
+
+<!-- activity main  -->
+    <string name="button_move">Move on the map</string>
+    <string name="button_get">Get bus stop</string>
+
+<!-- MapSettingActivity -->
+    <string name="geo_name">Kannai</string>
+    <string name="edit_address">Address</string>
+    <string name="button_search">Search</string>
+    <string name="button_location_set">Set</string>
+    <string name="search_please_address">Please enter address</string>
+    <string name="search_please_name">Please enter label</string>
+    <string name="search_found">Found location</string>
+    <string name="search_not_found">NOT found location</string>
+
+<!-- dialog option  -->
+    <string name="dialog_button_gps">GPS</string>
+    <string name="dialog_button_close">Close</string>
+
+<!-- dialog route -->
+    <string name="dialog_route_label_company">Company</string>
+    <string name="dialog_route_label_type">Type</string>
+    <string name="dialog_route_label_day">Day</string>
+    <string name="dialog_route_label_saturday">Saturday</string>
+    <string name="dialog_route_label_holiday">Holiday</string>
+    <string name="dialog_route_label_remarks">Remarks</string>
+    <string name="button_dialog_route_home">Homepage</string>
+    <string name="button_dialog_route_search">Timetable</string>
+    <string name="button_dialog_route_info">Bus Stop Info</string>
+
+<!-- RouteDialog  -->
+    <string name="route_unknown">Unknown</string>
+
+<!-- dialog about -->
+    <string name="dialog_about_title">About</string>   
+    <string name="dialog_about_main">This application is the map of bus stop in Japan.</string>
+    <string name="dialog_about_credit">Author: Kenichi Ohwada</string>
+
+<!-- menu main -->
+    <string name="menu_about">About</string>  
+    <string name="menu_usage">Usage</string>
+    <string name="menu_center">Show / Hide the center marker</string>  
+    <string name="menu_map_setting">Map Setting</string> 
+    <string name="menu_setting">Setting</string>   
+    <string name="menu_clear">Clear Cache</string>
+
+<!-- preference -->
+    <string name="preference_title_main">Genarl Setting</string>
+    <string name="checkbox_pref_display_route_title">Display routes</string>
+    <string name="checkbox_pref_display_route_summary">Display routes when you get the bus stop. \nSometime this app to crash,  when long-distance routes is large.</string>
+    <string name="list_pref_distance_title">Distance from the center of map</string>
+    <string name="list_pref_distance_summary">The distance from the center of map, when you get the bus stop</string>
+
+    <string name="preference_title_cache">Cache Setting</string>
+    <string name="edittext_pref_cache_dir_title">Directory to cache</string>
+    <string name="edittext_pref_cache_dir_summary">Directory name of the SD card to cache. \nWhen you change name, original directory will not be deleted. Please delete manually.</string>
+    <string name="list_pref_cache_files_title">Number of files in cache</string>
+    <string name="list_pref_cache_files_summary">The upper limit of number of files to be cached. \nIf exceeds this limit, that amount files are deleted.</string>
+    <string name="list_pref_cache_days_title">Effective days of cache</string>
+    <string name="list_pref_cache_days_summary">Effective days of the cached file. \nIf exceeds this days, cached file is disabled, and get from the server.</string>
+
+</resources>

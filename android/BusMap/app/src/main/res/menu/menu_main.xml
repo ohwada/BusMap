@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2015-12-01 K.OHWADA -->
+<menu 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" 
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/menu_about"
+        android:title="@string/menu_about" 
+        android:orderInCategory="100" 
+        app:showAsAction="never" />
+
+    <item 
+        android:id="@+id/menu_usage"
+        android:title="@string/menu_usage" 
+        android:orderInCategory="100" 
+        app:showAsAction="never" />
+
+    <item 
+        android:id="@+id/menu_center"
+        android:title="@string/menu_center"
+        android:orderInCategory="100" 
+        app:showAsAction="never" />
+
+    <item 
+        android:id="@+id/menu_map_setting"
+        android:title="@string/menu_map_setting"
+        android:orderInCategory="100" 
+        app:showAsAction="never" />
+
+    <item 
+        android:id="@+id/menu_setting"
+        android:title="@string/menu_setting"
+        android:orderInCategory="100" 
+        app:showAsAction="never" />
+
+    <item 
+        android:id="@+id/menu_clear"
+        android:title="@string/menu_clear" 
+        android:orderInCategory="100" 
+        app:showAsAction="never" />
+
+</menu>

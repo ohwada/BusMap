@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2015-12-01 K.OHWADA -->
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory 
+        android:title="@string/preference_title_main">
+
+        <CheckBoxPreference
+            android:key="display_route"
+            android:title="@string/checkbox_pref_display_route_title"
+            android:summary="@string/checkbox_pref_display_route_summary"
+            android:defaultValue="true" />
+
+        <ListPreference
+            android:key="distance"
+            android:title="@string/list_pref_distance_title"
+            android:dialogTitle="@string/list_pref_distance_title"
+            android:summary="@string/list_pref_distance_summary"
+            android:entries="@array/list_pref_distance_entries"
+            android:entryValues="@array/list_pref_distance_entryvalues"
+            android:defaultValue="5" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory 
+        android:title="@string/preference_title_cache" >
+
+        <EditTextPreference   
+            android:key="cache_dir"  
+            android:title="@string/edittext_pref_cache_dir_title"  
+            android:summary="@string/edittext_pref_cache_dir_summary"   
+            android:defaultValue="BusMap" />
+
+        <ListPreference
+            android:key="cache_files"
+            android:title="@string/list_pref_cache_files_title"
+            android:dialogTitle="@string/list_pref_cache_files_title"
+            android:summary="@string/list_pref_cache_files_summary"
+            android:entries="@array/list_pref_cache_files_entries"
+            android:entryValues="@array/list_pref_cache_files_entryvalues"
+            android:defaultValue="1000" />
+
+        <ListPreference 
+            android:key="cache_days"  
+            android:title="@string/list_pref_cache_days_title" 
+            android:dialogTitle="@string/list_pref_cache_days_title" 
+            android:summary="@string/list_pref_cache_days_summary"   
+            android:entries="@array/list_pref_cache_days_entries"
+            android:entryValues="@array/list_pref_cache_days_entryvalues"
+            android:defaultValue="7" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
