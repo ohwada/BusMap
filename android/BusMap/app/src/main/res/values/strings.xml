@@ -18,10 +18,13 @@
     <string name="edit_address">Address</string>
     <string name="button_search">Search</string>
     <string name="button_location_set">Set</string>
-    <string name="search_please_address">Please enter address</string>
-    <string name="search_please_name">Please enter label</string>
-    <string name="search_found">Found location</string>
-    <string name="search_not_found">NOT found location</string>
+
+<!-- Location Searcher  -->
+    <string name="toast_search_please_address">Please enter address</string>
+    <string name="toast_search_please_name">Please enter label</string>
+    <string name="toast_search_found">Found location</string>
+    <string name="toast_search_not_found">NOT found location</string>
+    <string name="toast_gps_found">Found location</string>
 
 <!-- dialog option  -->
     <string name="dialog_button_gps">GPS</string>

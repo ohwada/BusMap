@@ -13,15 +13,18 @@
     <string name="button_move">地図の移動</string>
     <string name="button_get">バス停を取得する</string>
 
-<!-- MapSettingActivity -->
+<!-- Map Setting Activity -->
     <string name="geo_name">関内</string>
     <string name="edit_address">住所</string>
     <string name="button_search">検索</string>
     <string name="button_location_set">設定</string>
-    <string name="search_please_address">住所を入力してください</string>
-    <string name="search_please_name">名称を入力してください</string>
-    <string name="search_found">場所が見つかりました</string>
-    <string name="search_not_found">指定された住所が見つかりません</string>
+
+<!-- Location Searcher  -->
+    <string name="toast_search_please_address">住所を入力してください</string>
+    <string name="toast_search_please_name">名称を入力してください</string>
+    <string name="toast_search_found">場所が見つかりました</string>
+    <string name="toast_search_not_found">指定された住所が見つかりません</string>
+    <string name="toast_gps_found">場所が見つかりました</string>
 
 <!-- dialog option  -->
     <string name="dialog_button_gps">GPS</string>
