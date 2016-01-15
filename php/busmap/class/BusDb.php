@@ -100,11 +100,14 @@ class BusDb {
 
     /**
      * searchCompaniesName
-     * @param string $name
-     * @param int $pref_id
+     * @param string $name_raw
+     * @param int $pref_id_raw
      * @return array of row
      */
-    function searchCompaniesName( $name, $pref_id ) {
+    function searchCompaniesName( $name_raw, $pref_id_raw ) {
+        // sanitize raw value
+        $name = mysql_real_escape_string($name_raw);
+        $pref_id = intval($pref_id_raw);
         $sql = "SELECT * FROM bus_company WHERE ";
         if ( $pref_id > 0 ) {
             $id_arr = $this->selectComIdsByPrefId( $pref_id );
@@ -300,12 +303,15 @@ class BusDb {
 
     /**
      * searchRoutesName
-     * @param string $name
-     * @param int $pref_id
+     * @param string $name_raw
+     * @param int $pref_id_raw
      * @return array of row
      */
-    function searchRoutesName( $name, $pref_id ) {
-         $sql = "SELECT * FROM bus_route WHERE ";
+    function searchRoutesName( $name_raw, $pref_id_raw ) {
+        // sanitize raw value
+        $name = mysql_real_escape_string($name_raw);
+        $pref_id = intval($pref_id_raw);
+        $sql = "SELECT * FROM bus_route WHERE ";
         if ( $pref_id > 0 ) {
             $id_arr = $this->selcectRouteIdsByPrefId( $pref_id );
             $ids = implode( ",", $id_arr );
@@ -376,11 +382,14 @@ class BusDb {
 
     /**
      * searchNodesName
-     * @param string $name
-     * @param int $pref_id
+     * @param string $name_raw
+     * @param int $pref_id_raw
      * @return arary of row
      */
-    function searchNodesName( $name, $pref_id ) {
+    function searchNodesName( $name_raw, $pref_id_raw ) {
+        // sanitize raw value
+        $name = mysql_real_escape_string($name_raw);
+        $pref_id = intval($pref_id_raw);
         $sql = "SELECT * FROM bus_stop WHERE ";
         if ( $pref_id > 0 ) {
             $sql .= " pref_id=". $pref_id ." AND ";
@@ -391,16 +400,20 @@ class BusDb {
 
     /**
      * searchNodesPoint
-     * @param float $lat
-     * @param float $lon
-     * @param int $distance ( 100m unit )
+     * @param float $lat_raw
+     * @param float $lon_raw
+     * @param int $distance_raw ( 100m unit )
      * @return arary of row
      */
-    function searchNodesPoint( $lat, $lon, $distance ) {
-        $distance_lat = 1100 * intval($distance);
-        $distance_lon = 900 * intval($distance);
-        $lat_e6 = intval( floatval($lat) * 1e6 );
-        $lon_e6 = intval( floatval($lon) * 1e6 );
+    function searchNodesPoint( $lat_raw, $lon_raw, $distance_raw ) {
+        // sanitize raw value
+        $distance = intval($distance_raw);
+        $lat = floatval($lat_raw);
+        $lon = floatval($lon_raw);
+        $distance_lat = 1100 * $distance;
+        $distance_lon = 900 * $distance;
+        $lat_e6 = intval( $lat * 1e6 );
+        $lon_e6 = intval( $lon * 1e6 );
         $max_lat = $lat_e6 + $distance_lat;
         $min_lat = $lat_e6 - $distance_lat;
         $max_lon = $lon_e6 + $distance_lon;

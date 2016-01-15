@@ -198,6 +198,7 @@ class BusApi {
         $id_arr = explode( ",", $ids );
         $len = min( count($id_arr), $length);
         for( $i=0; $i<$len; $i++ ) {
+            // sanitize raw value
             $arr[$i] = intval( $id_arr[$i] );
         }
         return $arr;
