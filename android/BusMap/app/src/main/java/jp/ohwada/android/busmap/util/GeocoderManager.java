@@ -162,9 +162,6 @@ public class GeocoderManager
      * --- class GeocoderLoader ---
      */
     private static class GeocoderLoader extends AsyncTaskLoader<List<Address>> {
-
-        // object
-        private Geocoder mGeocoder = null;
 	
         // param
         private int mMaxRresults = 1;
@@ -218,9 +215,9 @@ public class GeocoderManager
          */
         @Override 
         protected boolean onCancelLoad() {
-            // dummy
             log_d("onCancelLoad");
             return true;
+            // dummy
         }
 
         /**
@@ -241,6 +238,7 @@ public class GeocoderManager
         public void deliverResult( List<Address> list ) {
             log_d("deliverResult");
             super.deliverResult( list );
+            // dummy
         }
 					
         /**
@@ -263,11 +261,12 @@ public class GeocoderManager
          * search latitude and longitude  from location name 
          */
         private List<Address> getAddressList( String location, int maxResults ) {
+            log_d( "getAddressList " + location + " " + maxResults );
             List<Address> list = new ArrayList<Address>();
             if ( "".equals( location ) ) return list;
-            mGeocoder = new Geocoder( getContext(), Locale.getDefault() ) ;
+            Geocoder geocoder = new Geocoder( getContext(), Locale.getDefault() ) ;
             try {
-                list = mGeocoder.getFromLocationName( location, maxResults );
+                list = geocoder.getFromLocationName( location, maxResults );
             } catch ( IOException e ) {
                 if (Constant.DEBUG) e.printStackTrace();
             }

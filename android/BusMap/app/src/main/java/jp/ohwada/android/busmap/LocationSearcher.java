@@ -142,10 +142,12 @@ public class LocationSearcher {
      * procLoadFinished
      */
     private void procLoadFinished( boolean flag, double lat, double lon ) {
-        log_d("geocoder response");
         // When Activity become onStart from onStop,
         // sometimes response is returned, if NOT request
-        if ( !isGeocoderRequest ) return;
+        if ( !isGeocoderRequest ) {
+            log_d( "procLoadFinished not running");
+            return;
+        }
         isGeocoderRequest = false;
         // if NOT found
         if ( !flag ) {

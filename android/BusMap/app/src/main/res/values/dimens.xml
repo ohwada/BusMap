@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 2015-12-01 K.OHWADA -->
 <resources>
+<!-- dialog permission -->
+    <dimen name="dialog_permission_view_width">340dp</dimen>
+    <dimen name="dialog_message_textsize">16dp</dimen>
+
 <!-- dialog marker -->
     <dimen name="dialog_marker_view_width">340dp</dimen>
     <dimen name="dialog_marker_title_textsize">24sp</dimen>

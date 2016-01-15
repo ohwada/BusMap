@@ -156,7 +156,8 @@ public class BusmapService extends Service {
         });
         mVolley.start();
 
-        mFile  = new FileManager( mContext );
+        mFile = new FileManager( mContext );
+        mFile.makeSubDir();
         mFile.clearOldCache();
 
         // heap size

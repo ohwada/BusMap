@@ -4,6 +4,7 @@
  */
 package jp.ohwada.android.busmap;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -70,9 +72,18 @@ public class MainActivity extends Activity
     private static final int REQUEST_SETTING = 1;
     private static final int REQUEST_MAP_SETTING = 2;
 
+    /* permission request codes */
+    private static final int REQUEST_PERM_STORAGE = 11;
+    private static final int REQUEST_PERM_GPS = 12;
+
     private static final int DELAY_TIME_FILE = 1000; 	// 1 sec
     private static final int DELAY_TIME_MARKER = 1000; 	// 1 sec
     private static final int NOT_MATCH_MARKER = -1;
+
+    private static final String PERM_STORAGE = 
+        Manifest.permission.WRITE_EXTERNAL_STORAGE;
+    private static final String PERM_GPS = 
+        Manifest.permission.ACCESS_FINE_LOCATION;
 
     private GoogleMap mMap;
     private SharedPreferences mPreferences;
@@ -91,6 +102,8 @@ public class MainActivity extends Activity
     private HashMap<Integer, Marker> mHushMarkerAll = new HashMap<Integer, Marker>();
     private List<Polyline> mListPolylineBg = new ArrayList<Polyline>();
     private List<Polyline> mListPolylineOn = new ArrayList<Polyline>();
+
+    private int mRequestPrem = 0;
 
     // setting
     private float mOptionLat = Constant.GEO_LAT;
@@ -126,7 +139,7 @@ public class MainActivity extends Activity
         mButtonMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showOptionDialog();
+                showOptionDialog( false );
             }
         });
 
@@ -148,6 +161,10 @@ public class MainActivity extends Activity
                 if ( mode == OptionDialog.GPS_CHANGED ) {
                     toast_short(R.string.toast_gps_found);
                 }
+            }
+            @Override
+            public void onPermission() {
+                showPermissionDialog(REQUEST_PERM_GPS);
             }
         });
 
@@ -174,10 +191,15 @@ public class MainActivity extends Activity
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mFile = new FileManager( this );
-        mFile.makeSubDir();
 
         setupMap();
         connectService();
+
+        if ( hasPermission(PERM_STORAGE) ) {
+            mFile.makeSubDir();
+        } else {
+            showPermissionDialog(REQUEST_PERM_STORAGE);
+        }
    }
 
     /**
@@ -274,7 +296,20 @@ public class MainActivity extends Activity
     @Override
     public void onActivityResult( int request, int result, Intent data ) {
         log_d( "onActivityResult" );
-        // dummy
+        super.onActivityResult( request, result, data );
+    }
+
+    /**
+     * === onRequestPermissionsResult ===
+     */
+    @Override
+    public void onRequestPermissionsResult(int request, String[] permissions, int[] results) {
+        if ( request == REQUEST_PERM_STORAGE ) {
+            procRequestPermissionsResultStorage(permissions, results);
+        } else if ( request == REQUEST_PERM_GPS ) {
+            procRequestPermissionsResultGps(permissions, results);
+        }
+        super.onRequestPermissionsResult(request, permissions, results);
     }
 
     /**
@@ -828,9 +863,13 @@ public class MainActivity extends Activity
     /**
      * showOptionDialog
      */
-    private void showOptionDialog() {
+    private void showOptionDialog( boolean flag ) {
         mOptionDialog.create();
+        mOptionDialog.setPermGps( hasPermission(PERM_GPS) );
         mOptionDialog.show();
+        if ( flag ) {
+            mOptionDialog.startGps();
+        }
     }
 
     /**
@@ -860,6 +899,7 @@ public class MainActivity extends Activity
         dialog.show();
         dialog.setOnChangedListener(
             new MarkerDialog.OnChangedListener() {
+            @Override
             public void onItemClick(RouteRecord route_rec) {
                 dialog.dismiss();
                 prepareRouteInfo(final_node_rec, route_rec, final_list_route);
@@ -890,10 +930,12 @@ public class MainActivity extends Activity
         dialog.show();
         dialog.setOnChangedListener(
             new RouteDialog.OnChangedListener() {
+            @Override
             public void onInfoClick() {
                 dialog.dismiss();
                 showMarkerDialog(final_node_rec, final_list_route);
             }
+            @Override
             public void onUrlClick( String url ) {
                 dialog.dismiss();
                 startBrawser(url);
@@ -957,6 +999,100 @@ public class MainActivity extends Activity
         sendMessage(BusmapService.CMD_ROUTES_ON_MARKER, rec);
     }
 
+// --- permission ---
+    /**
+     * showPermissionDialog
+     */
+    private void showPermissionDialog( int request ) {
+        mRequestPrem = request;
+        final PermissionDialog dialog = new PermissionDialog( this );
+        dialog.create();
+        dialog.setPerm(
+            hasPermission(PERM_STORAGE),
+            hasPermission(PERM_GPS));
+        dialog.setOnChangedListener(
+            new PermissionDialog.OnChangedListener() {
+            @Override
+            public void onClickYes() {
+                dialog.dismiss();
+                String[] perms = { PERM_STORAGE, PERM_GPS };
+                requestPermissions(perms, mRequestPrem);
+            }
+            @Override
+            public void onClickNo() {
+                dialog.dismiss();
+                procClickNo();
+            }
+        });
+        dialog.show();
+    }
+
+    /**
+     * procClickNo
+     */
+    private void procClickNo() {
+        switch( mRequestPrem ) {
+            case REQUEST_PERM_STORAGE:
+                toast_long( R.string.toast_finish );
+                finish();
+                break;
+            case REQUEST_PERM_GPS:
+                toast_long( R.string.toast_not_permit_gps );
+                break;
+        }
+    }
+
+    /**
+     * procRequestPermissionsResultStorage
+     */
+    private void procRequestPermissionsResultStorage(String[] permissions, int[] results) {
+        for( int i=0; i<permissions.length; i++ ) {
+            String perm = permissions[i];
+            int grant = results[i];
+             if ( PERM_STORAGE.equals(perm) ) {
+                if (grant == PackageManager.PERMISSION_GRANTED) {
+                    mFile.makeSubDir();
+                } else {
+                    toast_long( R.string.toast_finish );
+                    finish();
+                }
+            }
+        }
+    }
+
+    /**
+     * procRequestPermissionsResultGps
+     */
+    private void procRequestPermissionsResultGps(String[] permissions, int[] results) {
+        boolean flag = false;
+        for( int i=0; i<permissions.length; i++ ) {
+            String perm = permissions[i];
+            int grant = results[i];
+            if ( PERM_GPS.equals(perm) ) {
+                if (grant == PackageManager.PERMISSION_GRANTED) {
+                    flag = true;
+                } else {
+                    toast_long( R.string.toast_finish );
+                }
+            }
+        }
+        if ( flag ) {
+            showOptionDialog( true );
+        }
+    }
+
+    /**
+     * hasPermission
+     */
+    private boolean hasPermission(String permission) {
+        int result = checkCallingOrSelfPermission(permission);
+        log_d( "hasPermission " + permission + " " + result );
+        if ( result == PackageManager.PERMISSION_GRANTED ) {
+            return true;
+        }
+        return false;
+    }
+
 // --- startActivity ---
     /**
      * startSetting
@@ -1000,8 +1136,8 @@ public class MainActivity extends Activity
     /**
      * toast_short
      */
-    private void toast_short( int id ) {
-        ToastMaster.makeText( this, id, Toast.LENGTH_SHORT ).show();
+    private void toast_short( int res_id ) {
+        ToastMaster.makeText( this, res_id, Toast.LENGTH_SHORT ).show();
     }
 
     /**
@@ -1009,6 +1145,13 @@ public class MainActivity extends Activity
      */
     private void toast_short( String msg ) {
         ToastMaster.makeText( this, msg, Toast.LENGTH_SHORT ).show();
+    }
+
+    /**
+     * toast_long
+     */
+    private void toast_long( int res_id ) {
+        ToastMaster.makeText( this, res_id, Toast.LENGTH_LONG ).show();
     }
 
     /**

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 2015-12-01 K.OHWADA -->
 <resources>
-    <string name="app_name">バス停</string>
+    <string name="app_name">バス停地図</string>
     <string name="title_activity_main">バス停地図</string>
 
 <!-- Main Activity -->
     <string name="toast_no_node">この付近にはバス停がありません</string>
     <string name="toast_wait">しばらくお待ちください</string>
     <string name="toast_volley_error">サーバーからデータが取得できません: \n %s</string>
+    <string name="toast_finish">「ファイルへのアクセス」が許可されないため、アプリを終了します</string>
+    <string name="toast_not_permit_gps">「位置情報」の権限が許可されませんでした</string>
 
 <!-- activity main -->
     <string name="button_move">地図の移動</string>
@@ -25,6 +27,14 @@
     <string name="toast_search_found">場所が見つかりました</string>
     <string name="toast_search_not_found">指定された住所が見つかりません</string>
     <string name="toast_gps_found">場所が見つかりました</string>
+
+<!-- dialog permission  -->
+    <string name="dialog_permission_title">アプリの権限</string>
+    <string name="dialog_permission_message">アプリの権限を許可してください。</string>
+    <string name="dialog_permission_storage">「ファイルへのアクセス」は、サーバーから取得したデータをストレージに保存するの使用します。許可しない場合は、アプリは終了します。</string>
+    <string name="dialog_permission_gps">「位置情報」は、GPSで検知した場所に地図を移動するために使用します。</string>
+    <string name="button_dialog_perm_yes">許可する</string>
+    <string name="button_dialog_perm_no">許可しない</string>
 
 <!-- dialog option  -->
     <string name="dialog_button_gps">GPS</string>

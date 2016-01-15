@@ -211,6 +211,10 @@ public class FileUtil {
         // get file list
         File dir = new File( getDir() );
         File[] files = dir.listFiles();
+        if ( files == null ) {
+            log_d("clearOldFiles: probably not permit WRITE_EXTERNAL_STORAGE");
+            return;
+        }
         if ( files.length <= max_files ) return;
         // create file list
         List<File> list = new ArrayList<File>();

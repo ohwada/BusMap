@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import jp.ohwada.android.busmap.Constant;
@@ -108,11 +109,20 @@ public class CommonDialog extends Dialog {
      }
 
     /**
+     * setMessage
+     * @param String str
+     */ 
+    protected void setMessage( String str ) {
+        TextView tv = (TextView) findViewById( R.id.TextView_dialog_message );
+        tv.setText(str);
+    }
+
+    /**
      * createButtonClose
      */ 
     protected void createButtonClose() {
-        Button btnClose = (Button) findViewById( R.id.Button_dialog_close );
-        btnClose.setOnClickListener( new View.OnClickListener() {
+        Button btn = (Button) findViewById( R.id.Button_dialog_close );
+        btn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick( View v) {
                 dismiss();
@@ -121,7 +131,52 @@ public class CommonDialog extends Dialog {
     }
 
     /**
+     * createButtonYes
+     * @param int res_id
+     */ 
+    protected void createButtonYes( int res_id ) {
+        Button btn = (Button) findViewById( R.id.Button_dialog_yes );
+        btn.setText(res_id);
+        btn.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v) {
+                procClickYes();
+            }
+        });
+    }
+
+    /**
+     * createButtonNo
+     * @param int res_id
+     */ 
+    protected void createButtonNo( int res_id ) {
+        Button btn = (Button) findViewById( R.id.Button_dialog_no );
+        btn.setText(res_id);
+        btn.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v) {
+                procClickNo();
+            }
+        });
+    }
+
+    /**
+     * procClickYes
+     */ 
+    protected void procClickYes() {
+        // dummy
+    }
+
+    /**
+     * procClickYes
+     */ 
+    protected void procClickNo() {
+        // dummy
+    }
+
+    /**
      * setLayoutWidth
+     * @param int res_id
      */ 
     protected void setLayoutWidthFromDimension( int res_id ) {
         int width = (int) adjustWidth( getDimension( res_id ));
@@ -152,11 +207,38 @@ public class CommonDialog extends Dialog {
 
     /**
      * calcWidth
+     * @param float ratio
      * @return int
      */ 
     protected int calcWidth( float ratio ) {
         int width = (int)( mDisplaySize.x * ratio );
         return width;
+    }
+
+    /**
+     * adjustWidth
+     * @param float width
+     * @return int
+     */
+    protected int adjustWidth( float width ) {
+        int min_width = calcWidth( WIDTH_RATIO_HALF );
+        int max_width = calcWidth( WIDTH_RATIO_FULL );
+        if ( width < min_width ) {
+            width = min_width;
+        }
+        if ( width > max_width ) {
+            width = max_width;
+        }
+        return (int)width;
+    }
+
+    /**
+     * getDimension
+     * @param int res_id
+     * @return float
+     */
+    protected float getDimension( int res_id ) {
+        return getContext().getResources().getDimension( res_id );
     }
 
     /**
@@ -178,32 +260,20 @@ public class CommonDialog extends Dialog {
     }
 
     /**
-     * getDimension
+     * getString
+     * @param int res_id 
+     * @return String
      */
-    protected int adjustWidth( float width ) {
-        int min_width = calcWidth( WIDTH_RATIO_HALF );
-        int max_width = calcWidth( WIDTH_RATIO_FULL );
-        if ( width < min_width ) {
-            width = min_width;
-        }
-        if ( width > max_width ) {
-            width = max_width;
-        }
-        return (int)width;
-    }
-
-    /**
-     * getDimension
-     */
-    protected float getDimension( int res_id ) {
-        return getContext().getResources().getDimension( res_id );
+    protected String getString( int res_id ) {
+        return getContext().getResources().getString( res_id );
     }
 
     /**
      * toast_short
+     * @param int res_id 
      */
-    protected void toast_short( int id ) {
-        ToastMaster.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
+    protected void toast_short( int res_id ) {
+        ToastMaster.makeText(getContext(), res_id, Toast.LENGTH_SHORT).show();
     }
 
     /**

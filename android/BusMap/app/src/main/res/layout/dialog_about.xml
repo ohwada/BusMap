@@ -7,43 +7,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="4dp" >
-
-    <ScrollView  
-        android:id="@+id/Scrollview"  
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
 				
-        <TextView 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/dialog_about_main"
-            android:textSize="@dimen/dialog_about_main_textsize" />
+    <TextView
+        android:text="@string/dialog_about_main"
+        android:textSize="@dimen/dialog_about_main_textsize"  
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/TextView_dialog_about_credit"   
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_gravity="right" 
-            android:gravity="right" 
-            android:text="@string/dialog_about_credit"
-            android:textSize="@dimen/dialog_about_credit_textsize" />
+    <TextView
+        android:id="@+id/TextView_dialog_about_credit"
+        android:text="@string/dialog_about_credit"
+        android:textSize="@dimen/dialog_about_credit_textsize"   
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_gravity="right" 
+        android:gravity="right" />
 
-        <Button 
-            android:id="@+id/Button_dialog_close" 
-            android:layout_width="match_parent" 
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" 
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@android:drawable/btn_default_small"
-            android:text="@string/dialog_button_close" />
-
-    </LinearLayout> 
-    </ScrollView>		
+    <Button 
+        android:id="@+id/Button_dialog_close" 
+        android:text="@string/dialog_button_close"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" 
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:drawable/btn_default_small" />
+		
 </LinearLayout>

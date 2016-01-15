@@ -12,3 +12,9 @@ https://android.googlesource.com/platform/frameworks/volley
 
 - require Google Maps api key. <br/>
 https://developers.google.com/maps/documentation/android-api/signup
+
+## App in Google play
+https://play.google.com/store/apps/details?id=jp.ohwada.android.busmap
+
+## Usage (in Japanese)
+http://android.ohwada.jp/busmap

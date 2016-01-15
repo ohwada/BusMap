@@ -8,6 +8,8 @@
     <string name="toast_no_node">There are no bus stop</string>
     <string name="toast_wait">Please wait</string>
     <string name="toast_volley_error">NOT get data from server: \n %s</string>
+    <string name="toast_finish">Access Files is not permitted, finish this app.</string>
+    <string name="toast_not_permit_gps">Device Location is not permitted.</string>
 
 <!-- activity main  -->
     <string name="button_move">Move on the map</string>
@@ -25,6 +27,15 @@
     <string name="toast_search_found">Found location</string>
     <string name="toast_search_not_found">NOT found location</string>
     <string name="toast_gps_found">Found location</string>
+
+<!-- dialog permission  -->
+    <string name="dialog_permission_title">App Permissions</string>
+    <string name="dialog_permission_message">Please permit App Permissions.</string>
+    <string name="dialog_permission_storage">
+Access Files, this app store the data that are retrieved from the server to the storage. If you do not permit, this app is finished.</string>
+    <string name="dialog_permission_gps">Device Location, this app move the map to the location where is detected by the GPS.</string>
+    <string name="button_dialog_perm_yes">Permit</string>
+    <string name="button_dialog_perm_no">Not permit</string>
 
 <!-- dialog option  -->
     <string name="dialog_button_gps">GPS</string>

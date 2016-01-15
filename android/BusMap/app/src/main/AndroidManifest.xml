@@ -2,7 +2,7 @@
 <!-- 2015-12-01 K.OHWADA -->
 <manifest 
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jp.ohwada.android.busmap">
+    package="jp.ohwada.android.busmap" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

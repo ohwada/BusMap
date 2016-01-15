@@ -5,9 +5,8 @@
 package jp.ohwada.android.busmap;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Location;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 
@@ -27,6 +26,8 @@ public class OptionDialog extends CommonDialog {
     private LocationSearcher mSearcher;
     private SearchView mSearchView;
 
+    private boolean mHasPermGps = false;
+
    // callback 
     private OnChangedListener mListener;  
 
@@ -37,6 +38,7 @@ public class OptionDialog extends CommonDialog {
         void onButtonClick();
         void onGeocoderFinished( double lat, double lon );
         void onGpsChanged(int mode, double lat, double lon);
+        void onPermission();
     }
 
     /*
@@ -132,6 +134,14 @@ public class OptionDialog extends CommonDialog {
     }
 
     /**
+     * setPermGps
+     * @param boolean hasPermGps
+     */
+    public void setPermGps( boolean hasPermGps ) {
+        mHasPermGps = hasPermGps;
+    }
+
+    /**
      * cancel
      */
     public void cancelGeocoder() {
@@ -154,10 +164,21 @@ public class OptionDialog extends CommonDialog {
     /**
      * procClickGps
      */
-    private void procClickGps() {
+    public void startGps() {
         Location loc = mSearcher.startGps();
         if ( loc != null ) {
             notifyGpsChanged(GPS_LAST_KNOWN, loc.getLatitude(), loc.getLongitude());
+        }
+    }
+
+    /**
+     * procClickGps
+     */
+    private void procClickGps() {
+        if ( mHasPermGps ) {
+            startGps();
+        } else {
+            notifyPermission();
         }
     }
 
@@ -185,6 +206,15 @@ public class OptionDialog extends CommonDialog {
     private void notifyGpsChanged(int mode, double lat, double lon) {
         if ( mListener != null ) {
             mListener.onGpsChanged(mode, lat, lon);
+        }
+    }
+
+    /**
+     * notifyPermission
+     */
+    private void notifyPermission() {
+        if ( mListener != null ) {
+            mListener.onPermission();
         }
     }
 	

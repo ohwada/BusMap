@@ -145,15 +145,17 @@ GPSの検知した場所に移動します。
 または、設定画面の「路線を表示する」のチェックを外してください。
 <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_tokyo_progress.png" rel="attachment wp-att-6200"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_tokyo_progress-169x300.png" alt="busmap_tokyo_progress" width="169" height="300" class="alignnone size-medium wp-image-6200" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_tokyo.png" rel="attachment wp-att-6203"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_tokyo-169x300.png" alt="busmap_tokyo" width="169" height="300" class="alignnone size-medium wp-image-6203" /></a>
 
-<strong>アクセス許可</strong>
-(1) 位置情報
-GPSやWifiから位置を取得します。
-(2) USBストレージへのアクセス
+<strong>アプリの権限</strong>
+(1) USBストレージへのアクセス
 SDカードにダウンロードした情報をキャッシュとして保存しています。
-(3) Googleサービス設定の読み取り
-Google Map を使用します
-(4) ネットワークへのアクセス
-WEBサービスからバス停の情報を取得します。
+(2) 位置情報
+GPSやWifiから位置を取得します。
+
+<strong>Android 6.0 Marshmallow の端末の方へ</strong>
+アプリをインストールした時点では、アプリの権限が許可されていません。
+アプリを初めて起動したときに、下記のような表示が出ますので、アプリの権限が許可してください。
+Android 5.0 Lollipop およびそれ以前の端末の場合は、従来とおりインストール時にアプリの権限の確認がでて、インストールされます。
+<a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_perm.png" rel="attachment wp-att-6226"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_perm-169x300.png" alt="busmap_perm" width="169" height="300" class="alignnone size-medium wp-image-6226" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_perm_storage.png" rel="attachment wp-att-6227"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_perm_storage-169x300.png" alt="busmap_perm_storage" width="169" height="300" class="alignnone size-medium wp-image-6227" /></a> <a href="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_perm_gps.png" rel="attachment wp-att-6228"><img src="http://android.ohwada.jp/wp-content/uploads/2015/12/busmap_perm_gps-169x300.png" alt="busmap_perm_gps" width="169" height="300" class="alignnone size-medium wp-image-6228" /></a>
 
 <strong>ソースコード</strong>
 <a href="https://github.com/ohwada/BusMap" target="_blank">github</a> で公開しています。
