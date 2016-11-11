@@ -19,7 +19,7 @@ class BusData {
     }
 
     function excute($mode, $kind, $id) {
-        $name = $data->makeFilename( $mode, $kind, $id );
+        $name = $this->makeFilename( $mode, $kind, $id );
         switch ( $mode ) {
             case "prefecture":
                 $file = "data/prefecture_". $id .".". $kind;
